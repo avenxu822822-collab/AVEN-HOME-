@@ -160,12 +160,30 @@
     summary{cursor:pointer;list-style:none;padding:15px 17px;font-weight:800;color:#382b22}
     details[open] summary{border-bottom:1px solid var(--line);background:#f7ebd9}
     .detail-content{padding:15px 17px;color:#584b3f;font-size:14px;line-height:1.7}
+
+    .today-board{display:grid;gap:14px}
+    .script-card{background:#fffaf1;border:1px solid var(--line);border-radius:22px;box-shadow:0 16px 42px rgba(70,43,25,.09);overflow:hidden}
+    .script-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px 18px 12px;border-bottom:1px solid #ead7bb;background:linear-gradient(135deg,#fff9ee,#f4e2c6)}
+    .script-top h3{margin:7px 0 0;font-size:22px;line-height:1.28;font-family:"Songti SC","STSong","SimSun",serif}
+    .script-meta{display:flex;gap:8px;flex-wrap:wrap}
+    .script-meta span{font-size:12px;border:1px solid #d9bd91;background:#f6e8d0;color:#704d2f;border-radius:999px;padding:5px 9px}
+    .status-set{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;min-width:230px}
+    .status-btn{border:1px solid #d3b98f;background:#fffaf1;color:#68492d;border-radius:999px;padding:7px 10px;font-size:12px;cursor:pointer}
+    .status-btn.active{background:#2e251f;color:#f4d293;border-color:#2e251f}
+    .script-body{padding:18px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:18px}
+    .script-text{white-space:pre-line;font-size:16px;line-height:1.88;color:#352a22;background:#fffdf8;border:1px solid #eadac4;border-radius:16px;padding:18px}
+    .script-side{display:grid;gap:12px;align-content:start}
+    .info-box{border:1px solid #ead7bb;border-radius:16px;padding:14px;background:#fbf1e2}
+    .info-box b{display:block;color:#7d2738;margin-bottom:7px}
+    .info-box p{margin:0;color:#58493d;line-height:1.7;font-size:14px}
+    .copy-btn{border:0;background:var(--wine);color:#fff3e2;border-radius:12px;padding:11px 13px;cursor:pointer;font-weight:700}
+
     .floating-tools{position:fixed;right:22px;bottom:22px;display:flex;gap:10px;z-index:20}
     .tool-btn{border:0;background:#2e251f;color:#f6d596;border-radius:999px;padding:11px 14px;box-shadow:0 12px 35px rgba(0,0,0,.22);cursor:pointer}
     @media (max-width:980px){
       .app{grid-template-columns:1fr}.side{position:relative;height:auto}.side-note{display:none}
       main{padding:18px}.hero{padding:28px}.hero:after,.hero:before{display:none}
-      h1{font-size:38px}.hero-grid,.grid-3,.grid-2,.track-grid,.workflow,.rule-grid{grid-template-columns:1fr}
+      h1{font-size:38px}.hero-grid,.grid-3,.grid-2,.track-grid,.workflow,.rule-grid,.script-body{grid-template-columns:1fr}.script-top{display:block}.status-set{justify-content:flex-start;margin-top:12px;min-width:0}
     }
   </style>
 </head>
@@ -178,12 +196,13 @@
       </div>
       <nav class="nav" id="nav">
         <a href="#overview" class="active">项目总览 <small>01</small></a>
-        <a href="#audience">用户心理 <small>02</small></a>
-        <a href="#tracks">8大赛道 <small>03</small></a>
-        <a href="#writing">文案标准 <small>04</small></a>
-        <a href="#workflow">每日产出 <small>05</small></a>
-        <a href="#live">直播承接 <small>06</small></a>
-        <a href="#manual">执行手册 <small>07</small></a>
+        <a href="#today">今日录制 <small>02</small></a>
+        <a href="#audience">用户心理 <small>03</small></a>
+        <a href="#tracks">8大赛道 <small>04</small></a>
+        <a href="#writing">文案标准 <small>05</small></a>
+        <a href="#workflow">每日产出 <small>06</small></a>
+        <a href="#live">直播承接 <small>07</small></a>
+        <a href="#manual">执行手册 <small>08</small></a>
       </nav>
       <div class="side-note">原则：观众是主角，香气是辅助。先让用户认同，再自然承接产品。</div>
     </aside>
@@ -198,6 +217,156 @@
           <div class="metric"><b>40+</b><span>妈妈、妻子、女老板</span></div>
           <div class="metric"><b>8条</b><span>可测试内容赛道</span></div>
           <div class="metric"><b>6条/天</b><span>稳定内容产出模型</span></div>
+        </div>
+      </section>
+
+
+      <section id="today">
+        <div class="section-head"><div><h2>今日录制目录</h2><p>2026-05-13｜手机打开后按卡片录制，状态只保存在当前浏览器。</p></div><p>2 条待录</p></div>
+        <div class="today-board">
+          <article class="script-card" data-script="20260513-01">
+            <div class="script-top">
+              <div>
+                <div class="script-meta"><span>01</span><span>男人闻了会怎么想</span><span>手机录制</span></div>
+                <h3>男人真的会记住女人身上的味道吗？</h3>
+              </div>
+              <div class="status-set" data-status="20260513-01">
+                <button class="status-btn" data-value="未录">未录</button><button class="status-btn" data-value="已录">已录</button><button class="status-btn" data-value="已剪">已剪</button><button class="status-btn" data-value="已发">已发</button>
+              </div>
+            </div>
+            <div class="script-body">
+              <div class="script-text" id="script-20260513-01">我发现很多女人买香水的时候，
+都会偷偷问一句：
+男人会不会喜欢这个味道？
+
+其实这个问题不丢人。
+
+女人到了这个年纪，
+还想被人注意，
+还想被人靠近，
+这本来就很正常。
+
+但我跟你们说哦，
+男人通常不是被很浓的香水吸引的。
+
+太明显的味道，
+他可能第一秒会闻到，
+但不一定会记住。
+
+真正被人记住的，
+反而是你从他身边经过，
+或者靠近说话的时候，
+他闻到那点干净的味道。
+
+所以你们平时喷香，
+不要总往脖子前面喷。
+
+可以喷在肩膀、衣服内侧，
+或者手臂外侧的位置。
+
+这样别人不会一上来就被香味给压住，
+但靠近你的时候，
+会觉得你这个人身上的味道很舒服。
+
+香水不是让你去讨好谁。
+但一个女人愿意照顾自己身上的味道，
+别人是能感觉到的。
+
+你们觉得呢？</div>
+              <div class="script-side">
+                <div class="info-box"><b>拍摄建议</b><p>调香桌前或车里口播。开头看镜头，中段用手示范肩膀、衣服内侧、手臂外侧的位置。画面不用太多产品，干净一点。</p></div>
+                <div class="info-box"><b>产品承接</b><p>适合承接：干净日常香、约会香、伪体香、香水礼盒。先讲喷法，再轻轻说“直播间我会按场合帮你们选”。</p></div>
+                <div class="info-box"><b>评论区引导</b><p>你们平时香水都喷哪里？脖子、手腕，还是衣服上？</p></div>
+                <button class="copy-btn" data-copy="script-20260513-01">复制口播</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="script-card" data-script="20260513-02">
+            <div class="script-top">
+              <div>
+                <div class="script-meta"><span>02</span><span>婚姻里的气味</span><span>手机录制</span></div>
+                <h3>结婚久了，女人身上最先消失的是自己的味道</h3>
+              </div>
+              <div class="status-set" data-status="20260513-02">
+                <button class="status-btn" data-value="未录">未录</button><button class="status-btn" data-value="已录">已录</button><button class="status-btn" data-value="已剪">已剪</button><button class="status-btn" data-value="已发">已发</button>
+              </div>
+            </div>
+            <div class="script-body">
+              <div class="script-text" id="script-20260513-02">90%的女人结婚以前，
+其实都挺在意自己的。
+
+她们会逛街买衣服，
+会化点妆，
+出门前也会喷一点香水。
+
+不是为了多隆重，
+就是觉得自己这样出门，
+状态和心情都会好一点。
+
+但结婚很多年以后，
+很多女人会慢慢变得不在意自己。
+
+其实不是她不讲究了。
+是真的太忙了。
+
+早上要送孩子，
+送完孩子还要上班，
+晚上做饭、洗衣服、收拾家里。
+
+等到终于坐下来，
+已经没什么力气再去管自己了。
+
+最后身上长期只剩下：
+厨房的味道，
+洗衣液的味道，
+还有一整天忙完以后那种说不出来的累。
+
+这些都不是错。
+
+但如果时间长了，
+你自己都会慢慢忘了，
+你原来也是一个需要被靠近、被爱的人。
+
+所以有时候，
+你不用一下子改变很多。
+也不用非得买什么很贵的东西。
+
+先从一个很小的动作开始就可以了。
+
+比如洗完澡以后，
+手腕喷一下，
+睡衣边上喷一下，
+或者点个香薰，
+让卧室里有一点很淡的味道。
+
+不用香得很明显。
+能闻到一点就够了。
+
+这些动作不是为了证明什么。
+
+它只是让你在一天快结束的时候，
+从那些本该不属于你的味道里，
+慢慢把自己找回来。
+
+我不是说这些味道不好。
+那的确是一个女人认真生活过的痕迹。
+
+但我认为生活不应该把你全部盖住。
+
+你可以是一个很好的妈妈，
+也可以是一个很好的妻子。
+
+但你也值得在一地鸡毛的生活里，
+给自己留一点小美好。</div>
+              <div class="script-side">
+                <div class="info-box"><b>拍摄建议</b><p>夜晚工作室、卧室感画面。可以有洗完澡后喷手腕、喷睡衣边、点香薰的动作。语速慢一点，不要像卖货。</p></div>
+                <div class="info-box"><b>产品承接</b><p>适合承接：睡前香、卧室香氛、香薰蜡烛、淡香型礼盒。重点是“一天结束后留一分钟给自己”。</p></div>
+                <div class="info-box"><b>评论区引导</b><p>结婚以后，你还会在洗完澡后给自己喷一点香吗？</p></div>
+                <button class="copy-btn" data-copy="script-20260513-02">复制口播</button>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -305,6 +474,28 @@
   </div>
 
   <script>
+
+    document.querySelectorAll('.status-set').forEach(set=>{
+      const key='xmy-status-'+set.dataset.status;
+      const saved=localStorage.getItem(key)||'未录';
+      set.querySelectorAll('.status-btn').forEach(btn=>{
+        btn.classList.toggle('active',btn.dataset.value===saved);
+        btn.onclick=()=>{
+          localStorage.setItem(key,btn.dataset.value);
+          set.querySelectorAll('.status-btn').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+        };
+      });
+    });
+    document.querySelectorAll('.copy-btn').forEach(btn=>{
+      btn.onclick=async()=>{
+        const el=document.getElementById(btn.dataset.copy);
+        await navigator.clipboard.writeText(el.innerText);
+        const old=btn.innerText; btn.innerText='已复制';
+        setTimeout(()=>btn.innerText=old,1200);
+      };
+    });
+
     const tracks = [
       {no:"01",type:"流量型",cls:"flow",title:"男调香师的两性香氛课",desc:"男人视角讲不同关系场景里的用香。",target:"40+ 单身 / 离婚女性",core:"见什么男人、什么关系、什么场合，用什么味道更自然。",money:"香水 + 1v1 香氛咨询",examples:["见客户和见约会对象，味道不要一样","男人不一定懂香水，但会记住靠近时舒服的味道","为什么你喷了很贵的香，别人却不想靠近"],risk:"不能变成低俗两性，也不要教“怎么撩男人”。始终落回场合、分寸和用香方式。"},
       {no:"02",type:"高客单",cls:"money",title:"富婆磁场管理师",desc:"讲有钱女人的生活分寸和空间气味。",target:"小企业主 / 离异有产女性",core:"家里、车上、办公室、饭局、客户接待的气味管理。",money:"定制香 + 空间香氛方案",examples:["有些女人看着就不将就，味道也不会太吵","车里和办公室别用同一种香","见合伙人时，香水最好别抢在你前面"],risk:"不要说喷了就旺财。表达成第一印象、停留感、信任感和空间舒适度。"},
