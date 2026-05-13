@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>许木焱 IP 8赛道交互驾驶舱</title>
+  <style>
+    :root{
+      --ink:#211b16;
+      --muted:#756455;
+      --paper:#f4eadb;
+      --card:#fffaf1;
+      --line:#dcc7a8;
+      --wine:#7d2738;
+      --wine2:#a4374b;
+      --gold:#c79545;
+      --green:#405f51;
+      --blue:#40536b;
+      --shadow:0 22px 60px rgba(54,35,23,.16);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(circle at 16% 10%, rgba(199,149,69,.28), transparent 22rem),
+        radial-gradient(circle at 88% 4%, rgba(125,39,56,.18), transparent 26rem),
+        linear-gradient(180deg,#f8f1e7,#efe3d2 58%,#f7efe4);
+      min-height:100vh;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.16;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+    }
+    .app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+    .side{
+      position:sticky;top:0;height:100vh;padding:24px 18px;
+      background:rgba(38,29,23,.94);color:#f5e7d0;border-right:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);z-index:10;
+    }
+    .brand{display:flex;gap:12px;align-items:center;margin-bottom:26px}
+    .mark{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg,var(--gold),#f1d391 48%,var(--wine));
+      display:grid;place-items:center;color:#251b13;font-weight:900;font-size:20px;
+      box-shadow:0 12px 28px rgba(0,0,0,.25);
+    }
+    .brand strong{display:block;font-size:15px;letter-spacing:.08em}
+    .brand span{display:block;font-size:11px;color:#cdb894;margin-top:2px}
+    .nav{display:flex;flex-direction:column;gap:7px}
+    .nav a{
+      color:#dac9ad;text-decoration:none;padding:10px 11px;border-radius:12px;
+      font-size:13px;display:flex;justify-content:space-between;align-items:center;
+      border:1px solid transparent;
+    }
+    .nav a:hover,.nav a.active{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#fff3de}
+    .nav small{color:#a98d60}
+    .side-note{position:absolute;left:18px;right:18px;bottom:20px;color:#a9977d;font-size:11px;line-height:1.55}
+    main{padding:30px 34px 70px;max-width:1280px;width:100%}
+    .hero{
+      position:relative;overflow:hidden;border-radius:28px;padding:42px;
+      background:
+        linear-gradient(115deg,rgba(33,27,22,.96),rgba(75,45,31,.9) 48%,rgba(125,39,56,.88)),
+        radial-gradient(circle at 75% 14%,rgba(255,220,144,.45),transparent 18rem);
+      color:#fff3e2;box-shadow:var(--shadow);min-height:420px;
+    }
+    .hero:after{
+      content:"";position:absolute;right:42px;bottom:26px;width:180px;height:260px;border-radius:90px 90px 30px 30px;
+      border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.035));
+      box-shadow:inset 0 0 40px rgba(255,255,255,.05),0 30px 80px rgba(0,0,0,.22);
+      transform:rotate(-6deg);
+    }
+    .hero:before{
+      content:"SCARLET";position:absolute;right:68px;bottom:132px;z-index:1;
+      color:rgba(255,239,205,.36);letter-spacing:.32em;font-size:10px;transform:rotate(84deg);
+    }
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(235,198,132,.45);border-radius:999px;padding:7px 12px;color:#e6c282;font-size:12px;letter-spacing:.12em}
+    h1{font-family:"Songti SC","STSong","SimSun",serif;font-size:56px;line-height:1.08;margin:34px 0 18px;letter-spacing:.02em;max-width:740px}
+    .hero p{font-size:18px;line-height:1.75;max-width:720px;color:#ead8bd;margin:0}
+    .hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px;max-width:760px}
+    .metric{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);border-radius:16px;padding:16px;min-height:96px}
+    .metric b{display:block;color:#f1cf88;font-size:24px;margin-bottom:6px}
+    .metric span{font-size:12px;color:#d9c4a5;line-height:1.45}
+    section{margin-top:30px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin:0 0 14px}
+    .section-head h2{margin:0;font-size:28px;font-family:"Songti SC","STSong","SimSun",serif}
+    .section-head p{margin:0;color:var(--muted);font-size:13px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .panel,.card{
+      background:rgba(255,250,241,.82);border:1px solid var(--line);border-radius:var(--radius);
+      box-shadow:0 16px 42px rgba(70,43,25,.08);backdrop-filter:blur(14px);
+    }
+    .panel{padding:22px}
+    .card{padding:18px}
+    .card h3,.panel h3{margin:0 0 9px;font-size:18px}
+    .card p,.panel p{margin:0;color:#665648;line-height:1.72;font-size:14px}
+    .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .pill{border-radius:999px;background:#efe1ca;border:1px solid #dfc8a6;color:#6a4a2c;padding:6px 10px;font-size:12px}
+    .quote{
+      border-left:5px solid var(--wine);background:#fff8ed;padding:16px 18px;border-radius:0 16px 16px 0;
+      color:#3d3028;font-size:18px;line-height:1.75;font-family:"Songti SC","STSong","SimSun",serif;
+    }
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .tab{
+      border:1px solid var(--line);background:#fff8ed;color:#6a4a2c;padding:9px 13px;border-radius:999px;
+      cursor:pointer;font-size:13px;transition:.2s;
+    }
+    .tab:hover,.tab.active{background:#2e251f;color:#f4d293;border-color:#2e251f}
+    .track-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .track-card{
+      min-height:210px;position:relative;overflow:hidden;cursor:pointer;padding:18px;border-radius:20px;
+      border:1px solid var(--line);background:linear-gradient(180deg,#fffaf1,#f1e2ca);
+      transition:transform .22s, box-shadow .22s, border-color .22s;
+    }
+    .track-card:hover{transform:translateY(-4px);box-shadow:0 22px 54px rgba(69,43,25,.18);border-color:#bd8c46}
+    .track-no{font-size:12px;color:#9b3346;font-weight:800;letter-spacing:.1em}
+    .track-card h3{font-size:18px;line-height:1.28;margin:12px 0 10px}
+    .track-card p{font-size:13px;color:#665648;line-height:1.58;margin:0}
+    .track-type{position:absolute;right:14px;top:14px;border-radius:999px;padding:5px 8px;font-size:11px;color:#fff;background:var(--wine)}
+    .track-type.money{background:#5a6947}.track-type.flow{background:#40536b}.track-type.deep{background:#6c594b}
+    .drawer{
+      position:fixed;right:24px;top:24px;bottom:24px;width:min(560px,calc(100vw - 48px));
+      background:#fffaf1;border:1px solid var(--line);border-radius:26px;box-shadow:0 30px 100px rgba(25,18,14,.32);
+      z-index:40;transform:translateX(calc(100% + 40px));transition:.28s;overflow:hidden;display:flex;flex-direction:column;
+    }
+    .drawer.open{transform:translateX(0)}
+    .drawer-head{padding:24px;background:#2e251f;color:#fff1da}
+    .drawer-head small{color:#d7b36e;letter-spacing:.12em}
+    .drawer-head h2{margin:8px 0 8px;font-family:"Songti SC","STSong","SimSun",serif;font-size:28px}
+    .drawer-head p{margin:0;color:#d9c5a7}
+    .drawer-body{padding:20px 24px;overflow:auto}
+    .drawer-body h4{margin:18px 0 8px;color:#7d2738}
+    .drawer-body ul{margin:8px 0 0;padding-left:20px}
+    .drawer-body li{margin:6px 0;color:#55483d;line-height:1.55}
+    .close{position:absolute;right:16px;top:14px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:20px}
+    .overlay{position:fixed;inset:0;background:rgba(20,14,10,.32);z-index:30;opacity:0;pointer-events:none;transition:.2s}
+    .overlay.show{opacity:1;pointer-events:auto}
+    .rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .do,.dont{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fffaf1}
+    .dont{background:#f5e6e4;border-color:#e2b9b9}.do{background:#edf2e8;border-color:#c7d3b8}
+    .do h3{color:#405f51}.dont h3{color:#8e2c39}
+    .mini-list{display:grid;gap:9px;margin-top:10px}
+    .mini{padding:10px 12px;background:rgba(255,255,255,.62);border:1px solid rgba(0,0,0,.06);border-radius:12px;font-size:13px;color:#514439}
+    .workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .step{position:relative;padding:18px;background:#fffaf1;border:1px solid var(--line);border-radius:18px;min-height:150px}
+    .step b{display:block;color:#9b3346;margin-bottom:8px}
+    .step span{position:absolute;right:14px;bottom:10px;font-size:42px;font-weight:900;color:rgba(125,39,56,.09)}
+    .searchbar{display:flex;gap:10px;margin:16px 0}
+    .searchbar input{flex:1;border:1px solid var(--line);background:#fffaf1;border-radius:14px;padding:13px 14px;font-size:14px;outline:none}
+    .accordion{display:grid;gap:10px}
+    details{background:#fffaf1;border:1px solid var(--line);border-radius:16px;padding:0;overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:15px 17px;font-weight:800;color:#382b22}
+    details[open] summary{border-bottom:1px solid var(--line);background:#f7ebd9}
+    .detail-content{padding:15px 17px;color:#584b3f;font-size:14px;line-height:1.7}
+    .floating-tools{position:fixed;right:22px;bottom:22px;display:flex;gap:10px;z-index:20}
+    .tool-btn{border:0;background:#2e251f;color:#f6d596;border-radius:999px;padding:11px 14px;box-shadow:0 12px 35px rgba(0,0,0,.22);cursor:pointer}
+    @media (max-width:980px){
+      .app{grid-template-columns:1fr}.side{position:relative;height:auto}.side-note{display:none}
+      main{padding:18px}.hero{padding:28px}.hero:after,.hero:before{display:none}
+      h1{font-size:38px}.hero-grid,.grid-3,.grid-2,.track-grid,.workflow,.rule-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="mark">许</div>
+        <div><strong>许木焱 IP</strong><span>交互式项目驾驶舱</span></div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#overview" class="active">项目总览 <small>01</small></a>
+        <a href="#audience">用户心理 <small>02</small></a>
+        <a href="#tracks">8大赛道 <small>03</small></a>
+        <a href="#writing">文案标准 <small>04</small></a>
+        <a href="#workflow">每日产出 <small>05</small></a>
+        <a href="#live">直播承接 <small>06</small></a>
+        <a href="#manual">执行手册 <small>07</small></a>
+      </nav>
+      <div class="side-note">原则：观众是主角，香气是辅助。先让用户认同，再自然承接产品。</div>
+    </aside>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="eyebrow">SCARLET VINCI · 40+ WOMEN · SCENT IP</div>
+        <h1>不是香水测评号，<br>是成熟女性生活气味 IP。</h1>
+        <p>用香气作为一个小入口，讲 40 岁以上女性在家庭、婚姻、工作、疲惫和体面里的真实处境。让她们先觉得“老许懂我”，再愿意让老许帮她们选香。</p>
+        <div class="hero-grid">
+          <div class="metric"><b>43岁</b><span>调香师 / 香氛主理人</span></div>
+          <div class="metric"><b>40+</b><span>妈妈、妻子、女老板</span></div>
+          <div class="metric"><b>8条</b><span>可测试内容赛道</span></div>
+          <div class="metric"><b>6条/天</b><span>稳定内容产出模型</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="grid-3">
+          <div class="card"><h3>主角不是香水</h3><p>内容第一主角永远是观众：忙、累、被家庭推着走、很久没为自己留一点美好的女性。</p></div>
+          <div class="card"><h3>香气是生活工具</h3><p>不夸大成治愈、改命、挽救婚姻。它只是让日子里多一个舒服、好闻的小瞬间。</p></div>
+          <div class="card"><h3>先认同，再成交</h3><p>先让她觉得“他说的是我”，再自然带出睡前香、卧室香、饭局香、礼盒等产品。</p></div>
+        </div>
+      </section>
+
+      <section id="audience">
+        <div class="section-head"><div><h2>用户心理地图</h2><p>把“用户想听什么”变成内容按钮。</p></div></div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>她们真实生活里有什么</h3>
+            <div class="pill-row">
+              <span class="pill">早上送孩子</span><span class="pill">白天见客户</span><span class="pill">晚上做饭洗衣</span>
+              <span class="pill">家里人照顾完才轮到自己</span><span class="pill">不是不讲究，是太忙</span><span class="pill">很久没人提醒她也值得美好</span>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>她们真正想听什么</h3>
+            <div class="quote">你不是不爱美，是生活把你推得太快了。香气不用很贵，也不用很复杂，它只是让日子舒服一点。</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tracks">
+        <div class="section-head"><div><h2>8 大内容赛道</h2><p>点击卡片查看目标人群、内容示例、风险和执行提醒。</p></div><p>建议优先：故事型 IP / 婚姻共鸣 / 美业老板</p></div>
+        <div class="track-grid" id="trackGrid"></div>
+      </section>
+
+      <section id="writing">
+        <div class="section-head"><div><h2>老许文案标准</h2><p>不是金句堆砌，而是顺口、有启发、有用。</p></div></div>
+        <div class="tabs" id="writingTabs">
+          <button class="tab active" data-tab="structure">写作结构</button>
+          <button class="tab" data-tab="tone">说话感觉</button>
+          <button class="tab" data-tab="ban">禁用方向</button>
+          <button class="tab" data-tab="examples">正确表达</button>
+        </div>
+        <div class="panel" id="tabContent"></div>
+      </section>
+
+      <section>
+        <div class="rule-grid">
+          <div class="dont">
+            <h3>不要这样</h3>
+            <div class="mini-list">
+              <div class="mini">一上来讲前调、中调、后调。</div>
+              <div class="mini">承诺“喷了就发财、男人一定爱你”。</div>
+              <div class="mini">用“高级感、氛围感、斩男、拿捏”堆词。</div>
+              <div class="mini">把 40+ 女性写成焦虑、失败、需要被拯救。</div>
+            </div>
+          </div>
+          <div class="do">
+            <h3>要这样</h3>
+            <div class="mini-list">
+              <div class="mini">先讲一个她生活里真的会遇到的问题。</div>
+              <div class="mini">给一个能马上用的提醒：怎么喷、什么时候用、什么场合别用。</div>
+              <div class="mini">像直播间自然聊天，不像品牌广告。</div>
+              <div class="mini">香气轻轻出现，别抢观众的生活故事。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <div class="section-head"><div><h2>每日内容产出流程</h2><p>让团队知道每天怎么交付、怎么复盘。</p></div></div>
+        <div class="workflow">
+          <div class="step"><b>01 选题</b><p>先选观众问题：婚姻、妈妈、睡前、见客户、饭局、做生意、离婚、家庭疲惫。</p><span>1</span></div>
+          <div class="step"><b>02 文案</b><p>按“问题 + 真实观察 + 方法 + 提醒”写 250-350 字口播。</p><span>2</span></div>
+          <div class="step"><b>03 承接</b><p>最后才选择产品：香水、香氛、蜡烛、礼盒、空间香。</p><span>3</span></div>
+          <div class="step"><b>04 复盘</b><p>看认同感、评论问题、直播间询问，不只看点赞。</p><span>4</span></div>
+        </div>
+      </section>
+
+      <section id="live">
+        <div class="section-head"><div><h2>直播间承接</h2><p>直播间不是问“喜欢哪支香”，而是问“你用在什么场合”。</p></div></div>
+        <div class="grid-3">
+          <div class="card"><h3>睡前 / 卧室</h3><p>问她：是想自己安静一点，还是想让卧室有点不一样？承接睡前香、蜡烛、室内香氛。</p></div>
+          <div class="card"><h3>上班 / 客户</h3><p>问她：你平时要不要见客户、谈合作？承接干净、清爽、让人觉得可靠的香。</p></div>
+          <div class="card"><h3>饭局 / 约会</h3><p>问她：你是想被夸好闻，还是不想太明显？承接靠近才闻到的香水礼盒。</p></div>
+        </div>
+      </section>
+
+      <section id="manual">
+        <div class="section-head"><div><h2>执行手册速查</h2><p>把原长文档拆成可展开的模块，需要时再读。</p></div></div>
+        <div class="searchbar"><input id="search" placeholder="搜索关键词：妈妈、文案、直播、赛道、禁用词、产品承接..." /></div>
+        <div class="accordion" id="manualList"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer">
+    <button class="close" id="closeDrawer">×</button>
+    <div class="drawer-head"><small id="drawerType"></small><h2 id="drawerTitle"></h2><p id="drawerDesc"></p></div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <div class="floating-tools">
+    <button class="tool-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">回顶部</button>
+    <button class="tool-btn" onclick="window.print()">打印 / PDF</button>
+  </div>
+
+  <script>
+    const tracks = [
+      {no:"01",type:"流量型",cls:"flow",title:"男调香师的两性香氛课",desc:"男人视角讲不同关系场景里的用香。",target:"40+ 单身 / 离婚女性",core:"见什么男人、什么关系、什么场合，用什么味道更自然。",money:"香水 + 1v1 香氛咨询",examples:["见客户和见约会对象，味道不要一样","男人不一定懂香水，但会记住靠近时舒服的味道","为什么你喷了很贵的香，别人却不想靠近"],risk:"不能变成低俗两性，也不要教“怎么撩男人”。始终落回场合、分寸和用香方式。"},
+      {no:"02",type:"高客单",cls:"money",title:"富婆磁场管理师",desc:"讲有钱女人的生活分寸和空间气味。",target:"小企业主 / 离异有产女性",core:"家里、车上、办公室、饭局、客户接待的气味管理。",money:"定制香 + 空间香氛方案",examples:["有些女人看着就不将就，味道也不会太吵","车里和办公室别用同一种香","见合伙人时，香水最好别抢在你前面"],risk:"不要说喷了就旺财。表达成第一印象、停留感、信任感和空间舒适度。"},
+      {no:"03",type:"高客单",cls:"money",title:"美业老板的招财香",desc:"面向美容院、美甲、医美老板的空间气味解决方案。",target:"美容院 / 美甲 / 医美老板",core:"入口、咨询区、收银区、护理区分别怎么用香。",money:"空间方案 + 老板定制香",examples:["咨询区的香不要让客户紧张","收银台附近别用太甜的味道","老板自己身上的味道，会影响客户信不信你"],risk:"这是 B 端赛道，要更实用，少玄学，多讲客户体验和成交环境。"},
+      {no:"04",type:"流量型",cls:"flow",title:"命理调香师",desc:"用五行和香气做状态管理，不做虚假承诺。",target:"信玄学的 40+ 女性",core:"缺木、缺金、桃花、贵人、事业状态，用香气做日常提醒。",money:"命理香套装 + 年度礼盒",examples:["五行只是理解状态的工具，不是改命按钮","想做事的人，先别把自己弄得太甜","睡前用香，和白天见客户不是一回事"],risk:"不能说开运、发财、正缘必来。只能说心理暗示、状态管理、生活仪式。"},
+      {no:"05",type:"高客单",cls:"money",title:"离婚女人的破局香",desc:"离婚后不是复仇，是重新整理生活。",target:"35-50 岁离异、有经济能力女性",core:"换掉旧味道，重新建立自己的日常秩序。",money:"离婚重启香礼盒 + 阶段香咨询",examples:["离婚后第一支香，不要选得像在求安慰","你不需要让谁后悔，先把自己的生活收拾好","重新约会的香，不要一上来就太明显"],risk:"不能写成怨气、报复、挑拨。要克制，像重建生活，不像喊口号。"},
+      {no:"06",type:"流量型",cls:"flow",title:"调香室的100个女人",desc:"故事型 IP，最适合长期日更。",target:"喜欢人间观察的泛女性",core:"年龄、职业、状态、她来选香的原因、老许的判断。",money:"故事中自然承接香水 + 体验",examples:["一个做生意的姐姐，为什么不适合太甜的香","很久没买香水的妈妈，最后选了什么","从客户故事里讲出一个生活提醒"],risk:"不要编得过分戏剧化，不侵犯隐私。故事要真实、匿名、具体。"},
+      {no:"07",type:"深度线",cls:"deep",title:"父亲的病教会我的事",desc:"低频发布，用来建立真实感和人生厚度。",target:"有年迈父母的 40+ 人群",core:"医院、老人房间、告别、珍惜、嗅觉记忆。",money:"不强接产品，纯人设厚度",examples:["医院的味道为什么让人很久忘不掉","照顾父母的人，也要给自己留一分钟","有些气味，是一个人最后留给你的记忆"],risk:"不能卖惨，不能煽情过度，不能强行接产品。"},
+      {no:"08",type:"高客单",cls:"money",title:"许木焱的商业香道",desc:"商业空间和创始人个人气味。",target:"小老板 / 创业者 / IP 主理人",core:"直播间、店铺、客户接待、商务谈判、创始人形象。",money:"商业香氛咨询 + 创始人 IP 香",examples:["直播间的味道会影响停留感","品牌主理人身上的味道，也是一张名片","见大客户时，香水最好别像去约会"],risk:"不能空谈商业玄学，要讲具体空间、具体场景、具体用法。"}
+    ];
+
+    const trackGrid = document.getElementById("trackGrid");
+    tracks.forEach((t, i)=>{
+      const el = document.createElement("article");
+      el.className = "track-card";
+      el.innerHTML = `<span class="track-type ${t.cls}">${t.type}</span><div class="track-no">${t.no}</div><h3>${t.title}</h3><p>${t.desc}</p>`;
+      el.onclick = () => openTrack(t);
+      trackGrid.appendChild(el);
+    });
+
+    const drawer = document.getElementById("drawer"), overlay = document.getElementById("overlay");
+    function openTrack(t){
+      document.getElementById("drawerType").textContent = `${t.no} · ${t.type}`;
+      document.getElementById("drawerTitle").textContent = t.title;
+      document.getElementById("drawerDesc").textContent = t.desc;
+      document.getElementById("drawerBody").innerHTML = `
+        <h4>目标人群</h4><p>${t.target}</p>
+        <h4>核心内容</h4><p>${t.core}</p>
+        <h4>变现路径</h4><p>${t.money}</p>
+        <h4>内容示例</h4><ul>${t.examples.map(x=>`<li>${x}</li>`).join("")}</ul>
+        <h4>风险 / 执行提醒</h4><p>${t.risk}</p>`;
+      drawer.classList.add("open"); overlay.classList.add("show");
+    }
+    function closeDrawer(){ drawer.classList.remove("open"); overlay.classList.remove("show"); }
+    document.getElementById("closeDrawer").onclick = closeDrawer; overlay.onclick = closeDrawer;
+
+    const tabData = {
+      structure:`<h3>问题 + 真实观察 + 方法 + 提醒</h3><p>先进入她生活里的困惑，再给一个能立刻使用的小方法。不要一上来喊口号。</p><div class="mini-list"><div class="mini">问题：很多姐姐买香水，不是怕不好闻，是怕不适合自己这个年纪。</div><div class="mini">观察：年轻时甜一点没关系，但现在太像小姑娘，反而不合适。</div><div class="mini">方法：白天选干净，晚上柔一点，见客户别喷得像去约会。</div><div class="mini">提醒：香水不是让你变成别人喜欢的样子，是把现在的自己整理得舒服一点。</div></div>`,
+      tone:`<h3>像直播间里随口说出来</h3><p>少用固定开头，少金句。老许像一个懂生活的男人，低声、克制、真诚地给提醒。</p><div class="mini-list"><div class="mini">可以说：买香水之前，你先别急着问哪支最香。</div><div class="mini">可以说：有些味道不是不好闻，是用错了场合。</div><div class="mini">可以说：喷在衣服内侧，比喷满脖子自然。</div></div>`,
+      ban:`<h3>少用词</h3><p>贵气、气场、桃花、财运、高级、松弛、氛围感、斩男、拿捏、喷了就发财、男人一定爱你。</p><h3>替代表达</h3><p>见客户时不会显得轻浮；靠近说话时才闻得到；睡前不要用太亮太甜的味道；饭局别喷得像刚进商场专柜。</p>`,
+      examples:`<h3>更自然的说法</h3><p>我不反对悦己。但说实话，很多女人买香水，也不是完全不在乎别人怎么看。想被人注意，想被人夸一句好闻，这很正常，没什么不好意思。</p><h3>更有用的说法</h3><p>如果白天要见客户，香不要喷在脖子正前方。可以喷在衣服内侧、肩膀附近，别人靠近说话时才会闻到一点。</p>`
+    };
+    const tabContent = document.getElementById("tabContent");
+    function setTab(name){ tabContent.innerHTML = tabData[name]; document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name)); }
+    setTab("structure");
+    document.getElementById("writingTabs").onclick = e => { if(e.target.dataset.tab) setTab(e.target.dataset.tab); };
+
+    const manual = [
+      ["项目一句话总结","这是一个以许木焱为核心的成熟女性情绪生活 IP。香水不是主角，观众才是主角。最终目标是让她们觉得：老许懂我，老许说的是我。"],
+      ["许木焱是谁","43 岁调香师、香氛品牌主理人、内容创作者、创业者。成熟、克制、真实、有审美和执行力。"],
+      ["核心价值观","让香气走进每个人的生活。香气不一定很贵，也不一定只属于精致女人，它可以是普通日子里一点小美好。"],
+      ["内容底层逻辑","从观众真实生活开始，写出她们会认同的状态，轻轻带出香气，用一句观众会认同的话收尾。"],
+      ["两种文案模式","观众心理为主模式用于日常内容；产品导向模式只在明确要写某款产品、直播转化、货盘时使用。"],
+      ["每日 6 条搭配","男人视角、贵气/财运、老许选香、婚姻/离婚、五行诊断、老许狠话。实际执行可按当日测试重点调整。"],
+      ["直播间定位","不是只问喜欢哪支香，而是问她用在什么场合：上班、见客户、睡前、饭局、做生意、夫妻相处。"],
+      ["产品承接逻辑","按场景承接，不按香调硬卖。睡前、卧室、客户、饭局、礼盒、空间香，比单纯讲前中后调更好卖。"],
+      ["拍摄风格","调香桌、车里口播、夜晚工作室、窗边、点蜡烛、喷香水、包装礼盒。表演克制，别像广告。"],
+      ["复盘标准","看妈妈们最认同的内容、适合直播切片的内容、最适合产品承接的内容、需要避免的表达问题。"]
+    ];
+    const manualList = document.getElementById("manualList");
+    function renderManual(q=""){
+      manualList.innerHTML = "";
+      manual.filter(([a,b])=>(a+b).includes(q)).forEach(([title,content])=>{
+        const d=document.createElement("details");
+        d.innerHTML=`<summary>${title}</summary><div class="detail-content">${content}</div>`;
+        manualList.appendChild(d);
+      });
+    }
+    renderManual();
+    document.getElementById("search").oninput = e => renderManual(e.target.value.trim());
+
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    window.addEventListener("scroll",()=>{
+      const ids = navLinks.map(a=>a.getAttribute("href")).map(x=>x.slice(1));
+      let current = ids[0];
+      ids.forEach(id=>{ const el=document.getElementById(id); if(el && el.getBoundingClientRect().top < 180) current=id; });
+      navLinks.forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+current));
+    });
+  </script>
+</body>
+</html>
